@@ -1,9 +1,7 @@
 import { Route, Routes, Navigate } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
 
-import Navbar from "./components/Navbar";
-import MobileNav from "./components/MobileNav";
-import Footer from "./components/Footer";
+import MainLayout from "./components/MainLayout";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 import Home from "./pages/Home";
@@ -27,16 +25,17 @@ const App = () => {
   }
 
   return (
-    <>
-      <Navbar />
-      <Routes>
+    <Routes>
+      <Route
+        path="/auth"
+        element={isAuthenticated ? <Navigate to="/" replace /> : <AuthPage />}
+      />
+
+      {/* All other routes — wrapped in MainLayout */}
+      <Route element={<MainLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/quizzes" element={<Quizzes />} />
         <Route path="/quiz/take/:id" element={<TakeQuiz />} />
-        <Route
-          path="/auth"
-          element={isAuthenticated ? <Navigate to="/" replace /> : <AuthPage />}
-        />
         <Route
           path="/quiz/create"
           element={
@@ -70,10 +69,8 @@ const App = () => {
           }
         />
         <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-      {!isAuthenticated && <Footer />}
-      <MobileNav />
-    </>
+      </Route>
+    </Routes>
   );
 };
 

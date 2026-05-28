@@ -94,7 +94,7 @@ export const getMyAttempts = async (req, res) => {
 };
 
 // @route  GET /api/attempts/quiz/:quizId
-// Get all attempts for a specific quiz — for quiz creator
+// Get all attempts for a specific quiz - for quiz creator
 export const getQuizAttempts = async (req, res) => {
   try {
     const quiz = await Quiz.findById(req.params.quizId);

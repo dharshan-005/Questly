@@ -68,7 +68,7 @@ export const getAllQuizzes = async (req, res) => {
 };
 
 // @route  GET /api/quizzes/:id
-// Get single quiz — with correct answers hidden for listing, shown for taking
+// Get single quiz - with correct answers hidden for listing, shown for taking
 export const getSingleQuiz = async (req, res) => {
   try {
     const quiz = await Quiz.findById(req.params.id).populate(
@@ -108,7 +108,7 @@ export const getMyQuizzes = async (req, res) => {
 };
 
 // @route  PUT /api/quizzes/:id
-// Update quiz — only by creator
+// Update quiz - only by creator
 export const updateQuiz = async (req, res) => {
   try {
     const quiz = await Quiz.findById(req.params.id);
@@ -123,7 +123,7 @@ export const updateQuiz = async (req, res) => {
     if (quiz.createdBy.toString() !== req.user.id) {
       return res.status(403).json({
         success: false,
-        message: "Unauthorized — you can only edit your own quizzes",
+        message: "Unauthorized - you can only edit your own quizzes",
       });
     }
 
@@ -158,7 +158,7 @@ export const deleteQuiz = async (req, res) => {
     if (quiz.createdBy.toString() !== req.user.id) {
       return res.status(403).json({
         success: false,
-        message: "Unauthorized — you can only delete your own quizzes",
+        message: "Unauthorized - you can only delete your own quizzes",
       });
     }
 

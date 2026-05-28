@@ -24,7 +24,6 @@ const AuthPage = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [role, setRole] = useState("");
 
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -32,11 +31,6 @@ const AuthPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-
-    if (mode === "register" && !role) {
-      setError("Please select a role");
-      return;
-    }
 
     setLoading(true);
 
@@ -48,7 +42,6 @@ const AuthPage = () => {
               formData.name,
               formData.email,
               formData.password,
-              role,
             );
 
       if (!ok) {
@@ -56,10 +49,9 @@ const AuthPage = () => {
         return;
       }
 
-      login(data.token, data.user, data.user.role);
+      login(data.token, data.user);
       setFormData({ name: "", email: "", password: "" });
-      setRole("");
-      navigate(data.user.role === "creator" ? "/" : "/", { replace: true });
+      navigate("/", { replace: true });
     } catch (err) {
       setError(err.response?.data?.message || "Something went wrong");
     } finally {
@@ -199,7 +191,7 @@ const AuthPage = () => {
               </div>
             </div>
 
-            {mode === "register" && (
+            {/* {mode === "register" && (
               <div className="space-y-3 pt-2">
                 <p className="text-sm font-semibold text-text-secondary">
                   I want to...
@@ -229,7 +221,7 @@ const AuthPage = () => {
                   </button>
                 </div>
               </div>
-            )}
+            )} */}
 
             {error && (
               <p className="text-sm text-danger font-medium">{error}</p>

@@ -1,15 +1,18 @@
 import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
-import { getSingleQuiz } from "../services/quizService";
-import { submitAttempt } from "../services/attemptService";
 import {
   Clock,
   CheckCircle,
   XCircle,
   ChevronRight,
   Trophy,
+  ArrowLeft,
+  ChevronLeft,
 } from "lucide-react";
+
+import { useAuth } from "../context/AuthContext";
+import { getSingleQuiz } from "../services/quizService";
+import { submitAttempt } from "../services/attemptService";
 
 const TakeQuiz = () => {
   const { id } = useParams();
@@ -325,14 +328,12 @@ const TakeQuiz = () => {
     );
   }
 
-  // Quiz Taking Screen
   const question = quiz.questions[currentQ];
   const isLast = currentQ === quiz.questions.length - 1;
 
   return (
     <div className="min-h-screen bg-background pb-10">
       <div className="max-w-2xl mx-auto px-4 py-6">
-        {/* Header */}
         <div className="flex justify-between items-center mb-4">
           <div>
             <h1 className="text-sm font-semibold text-text-primary">
@@ -403,9 +404,9 @@ const TakeQuiz = () => {
           <button
             onClick={handlePrev}
             disabled={currentQ === 0}
-            className="flex-1 border border-border text-text-secondary py-2.5 rounded-lg text-sm hover:border-primary hover:text-primary transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+            className="flex-1 border border-border text-text-secondary py-2.5 rounded-lg text-sm hover:border-primary hover:text-primary transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
-            ← Previous
+            <ChevronLeft size={15} /> Previous
           </button>
 
           {isLast ? (

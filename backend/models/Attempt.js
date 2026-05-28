@@ -39,10 +39,6 @@ const attemptSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-// Prevent duplicate attempts — one attempt per user per quiz per session
-// Remove this if you want users to retake quizzes
-// attemptSchema.index({ quiz: 1, user: 1 }, { unique: true });
-
 const Attempt = mongoose.model("Attempt", attemptSchema);
 
 export default Attempt;
