@@ -258,7 +258,7 @@ A `quizzes_seed.json` file is included with 10 sample quizzes across 6 categorie
 
 ## Color System
 
-Trivora uses CSS variables with Tailwind v4 `@theme` for consistent theming:
+Questly uses CSS variables with Tailwind v4 `@theme` for consistent theming:
 
 ```css
 :root {
@@ -310,7 +310,7 @@ Trivora uses CSS variables with Tailwind v4 `@theme` for consistent theming:
 
 ## License
 
-This project is licensed under the MIT License — see [LICENSE](LICENSE) for details.
+Not yet..
 
 ---
 
